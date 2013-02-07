@@ -6,11 +6,11 @@
 #materials or objects were handled in the electron microscope. It allows you to easily see the differing values in a table and
 #toggle the corresponding rows if you find them insignificant.  If you have any problems or need help with this script, feel
 #free to contact the author.
-# @author: Chris Tooley <chris@tooley.ca>
+# @author: Chris Tooley <euxneks@gmail.com>
 #
 #License: MIT
 #
-#Copyright (C) 2013 Chris Tooley <chris@tooley.ca>
+#Copyright (C) 2013 Chris Tooley <euxneks@gmail.com>
 #
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
 #files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,
