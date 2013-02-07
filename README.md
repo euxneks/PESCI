@@ -1,7 +1,7 @@
 PESCI
 =====
 
-Parser for Electron SCanner Ini files.  Don't think many would use this but it's here.
+Parser for Electron SCanner Ini files.  Don't think many would use this but I want to start using github.
 
 This is a simple program to go through some special text files used by the electron scanning microscope at UVic to record how
 materials or objects were handled in the electron microscope. It allows you to easily see the differing values in a table and
@@ -25,8 +25,7 @@ OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO 
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR 
 IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
- To use:
+**Install**
 First, install these modules in PERL using cpanm like so:
    $ cpan App::cpanminus
    $ cpanm Config::IniFiles
@@ -34,11 +33,11 @@ First, install these modules in PERL using cpanm like so:
  beat this script into submission yourself.
 File::Spec is included with most perl installations I think. Otherwise just install like above.
 
-Next, simply run the application in a terminal or command prompt like so:
-   $ perl createTables.pl
-   or, if you have the permissions set to executable:
-   $ createTables.pl
+**Usage**: 
+perl pesci.pl [-o <filename>][-w <workdir>][-?]
 
-   Make sure that you have all TXT files in the same directory.
+	--output -o 	:specify the output file. default:./generatedTable.html
+	--workdir -w 	:specify the working directory where the INI text files are located. default: ./
+	--help -h -? 	:show this help dialog
 
 
