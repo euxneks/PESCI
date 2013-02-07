@@ -3,13 +3,13 @@ PESCI
 
 Parser for Electron SCanner Ini files.  Don't think many would use this but I want to start using github.
 
-This is a simple program to go through some special text files used by the electron scanning microscope at UVic to record how
-materials or objects were handled in the electron microscope. It allows you to easily see the differing values in a table and
-toggle the corresponding rows if you find them insignificant.  If you have any problems or need help with this script, feel
-free to contact the author.
+This is a simple program to go through some special text files used by the electron scanning microscope at UVic to record how materials or objects were handled in the electron microscope. It allows you to easily see the differing values in a table and toggle the corresponding rows if you find them insignificant.  If you have any problems or need help with this script, feel free to contact the author.
  @author: Chris Tooley <euxneks@gmail.com>
 
-License: MIT
+License
+-------
+
+MIT License
 
 Copyright (C) 2013 Chris Tooley <euxneks@gmail.com>
 
@@ -25,19 +25,22 @@ OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO 
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR 
 IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-**Install**
+Install
+-------
+
 First, install these modules in PERL using cpanm like so:
-   $ cpan App::cpanminus
-   $ cpanm Config::IniFiles
- This is applicable to at least Mac OS X and Windows with Strawberry Perl.  I haven't tested Linux but if you're a linux user you can probably 
- beat this script into submission yourself.
+>	$ cpan App::cpanminus
+>	$ cpanm Config::IniFiles
+This is applicable to at least Mac OS X and Windows with Strawberry Perl.  I haven't tested Linux but if you're a linux user you can probably beat this script into submission yourself.
 File::Spec is included with most perl installations I think. Otherwise just install like above.
 
-**Usage**: 
-perl pesci.pl [-o <filename>][-w <workdir>][-?]
+Usage
+-----
 
-	--output -o 	:specify the output file. default:./generatedTable.html
-	--workdir -w 	:specify the working directory where the INI text files are located. default: ./
-	--help -h -? 	:show this help dialog
+> perl pesci.pl [-o <filename>][-w <workdir>][-?]
+> 
+> 	--output -o 	:specify the output file. default:./generatedTable.html
+> 	--workdir -w 	:specify the working directory where the INI text files are located. default: ./
+> 	--help -h -? 	:show this help dialog
 
-
+Included in this repo is an example ini file from the Scanning Electron Microscope.
