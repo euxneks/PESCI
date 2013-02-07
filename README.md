@@ -30,7 +30,9 @@ Install
 
 First, install these modules in PERL using cpanm like so:
 >	$ cpan App::cpanminus
+
 >	$ cpanm Config::IniFiles
+
 This is applicable to at least Mac OS X and Windows with Strawberry Perl.  I haven't tested Linux but if you're a linux user you can probably beat this script into submission yourself.
 File::Spec is included with most perl installations I think. Otherwise just install like above.
 
@@ -38,9 +40,13 @@ Usage
 -----
 
 > perl pesci.pl [-o <filename>][-w <workdir>][-?]
+
 > 
+
 > 	--output -o 	:specify the output file. default:./generatedTable.html
+
 > 	--workdir -w 	:specify the working directory where the INI text files are located. default: ./
+
 > 	--help -h -? 	:show this help dialog
 
 Included in this repo is an example ini file from the Scanning Electron Microscope.
