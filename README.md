@@ -49,4 +49,8 @@ Usage
 
 > 	--help -h -? 	:show this help dialog
 
+For windows, you need to wrap any directory names that contain spaces in double quotes, for example:
+
+> perl pesci.pl -w "C:\my drive\something\"
+
 Included in this repo is an example ini file from the Scanning Electron Microscope.

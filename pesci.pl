@@ -52,16 +52,26 @@ $result = GetOptions( "output|o=s" => \$outputFile,
 						"workdir|w=s" => \$workdir,
 						"help|?|h" => \$help);
 
+#to combat windows command prompt ridiculousness - if the specified outputFile is a dir, 
+if ( -d $outputFile ) {
+    print "Usage error, expected outputFile to be a file, got a directory instead:\n";
+    $help = true;
+}
+
+if ( -f $workdir ) {
+	print "Usage error, expected work directory to be a directory, got a filename instead:\n";
+	$help = true;
+}
+
 if ( $help ) {
 	#show usage and flag options, and what they mean.
 	print "pesci.pl (c) 2013 Chris Tooley\nUsage: perl pesci.pl [-o <filename>][-w <workdir>][-?]\n\n\t--output -o \t:specify the output file. default:./generatedTable.html\n\t--workdir -w \t:specify the working directory where the INI text files are located. default: ./\n\t--help -h -? \t:show this help dialog\n\n";
 	exit;
 }
-
-my @files = glob File::Spec->catfile($workdir, '*.txt');
-#use Data::Dumper;
+$workdir = '"' . $workdir . '"';
+my @files = glob '' . File::Spec->catfile($workdir, '*.txt') . '';
 open( OUTFILE, ">" . $outputFile ); #open for overwrite
-
+print "\nPerl Electron SCanner INI parser...\nWill output to file: " . $outputFile . "\n";
 #all value names in the text files. If you add another, add it here, in order, preferably.
 my @headers = qw(InstructName SerialNumber DataNumber SampleName Format ImageName Directory Date Time Media DataSize PixelSize SignalName AcceleratingVoltage DecelerationVoltage Magnification WorkingDistance EmissionCurrent LensMode PhotoSize Vacuum MicronMarker SubMagnification SubSignalName SpecimenBias Condencer1 ScanSpeed CalibrationScanSpeed ColorMode ColorPalette ScreenMode Comment KeyWord1 KeyWord2 Condition DataDisplayCombine StageType StagePositionX StagePositionY StagePositionR StagePositionZ StagePositionT);
 
@@ -73,23 +83,25 @@ my @defaults = qw(ImageName Date Time PixelSize AcceleratingVoltage Magnificatio
 my $javascript = '<script type="text/javascript">
 	function toggleClassDisplay( className, element ){
 		var elements = document.getElementsByClassName( className );
-		if ( element.style[\'background-color\'] != \'red\' ) {
-			element.style[\'background-color\'] = \'red\';
+		if ( element.style.backgroundColor != \'gray\' ) {
+			element.style.backgroundColor = \'gray\';
+			element.style.color = \'#111\';
 		} else {
-			element.style[\'background-color\'] = \'lightgreen\';
+			element.style.backgroundColor = \'lightgreen\';
+			element.style.color = \'black\';
 		}
 		for ( var i = 0; i< elements.length; i++ ) {
-			if( elements[i].style[\'display\'] != \'none\'){
-				elements[i].style[\'display\'] = \'none\';
+			if( elements[i].style.display != \'none\'){
+				elements[i].style.display = \'none\';
 			}else{
-				elements[i].style[\'display\'] = \'\';
+				elements[i].style.display = \'\';
 			}
 		}
 	}
 </script>';
 
 #VERY SIMPLE NOT AT ALL GOOD HTML.  I don't think it's valid HTML actually, but it will render fine in Chrome and Firefox at least.
-print OUTFILE "<html>\n<head>\n$javascript\n<style type=\"text/css\">table{border-collapse:collapse}td{border:1px solid black;padding:2pt;}th{background:lightgray;border:1px solid black;}span{cursor:pointer;}</style>\n</head>\n<body>\n";
+print OUTFILE "<html>\n<head>\n$javascript\n<style type=\"text/css\">table{border-collapse:collapse}td{border:1px solid black;padding:2pt;}th{background:lightgray;border:1px solid black;}</style>\n</head>\n<body>\n";
 
 #these are the interactive components that allow the viewer to choose which columns to hide/show
 my $numperrow = 8;
@@ -100,10 +112,10 @@ foreach $header (@headers){
 		print OUTFILE "</tr><tr>";
 		$count = 0;
 	}
-	print OUTFILE "<td><span id=\"span_$header\" style=\"background-color:red;border:1px solid #444\" onclick=\"toggleClassDisplay('$header', this)\">$header</span></td>\n";
+	print OUTFILE "<td id=\"_$header\" style=\"background-color:gray;color:#111;cursor:pointer;\" onclick=\"toggleClassDisplay('$header', this)\">$header</td>\n";
 	$count++;
 }
-print OUTFILE "</tr><table>";
+print OUTFILE "</tr><table> <br />";
 
 #one use flag
 my $headers_made=0;
@@ -135,7 +147,7 @@ print OUTFILE "\n<script type=\"text/javascript\">";
 
 #unhide the defaults with the javascript toggle function we already have.
 foreach $default ( keys @defaults){
-	print OUTFILE "\ntoggleClassDisplay('$defaults[$default]', document.getElementById('span_$defaults[$default]'));"
+	print OUTFILE "\ntoggleClassDisplay('$defaults[$default]', document.getElementById('_$defaults[$default]'));"
 }
 print OUTFILE "\n</script>";
 print OUTFILE "\n</table>\n</body>\n</html>";
